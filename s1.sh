@@ -2,3 +2,4 @@
 
 echo "$USER"
 echo "$PWD"
+echo "$ENV"
