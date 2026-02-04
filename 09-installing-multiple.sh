@@ -11,7 +11,7 @@ Install(){
     status=$(dnf list installed $1)
     if [ $? -ne 0 ]; then
         echo "Installing $1..."
-        dnf install $1
+        dnf install $1 -y
         if [ $? -ne 0 ]; then
             echo "$1 installation is failure"
             exit 1
