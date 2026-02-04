@@ -12,9 +12,9 @@ fi
 
 Install(){
 
-    if ! dnf list installed $1 >/dev/null 2>&1; then
+    if ! dnf list installed $1 &>>$LOG_FILE; then
         echo "Installing $1..."
-        dnf install $1 -y >/dev/null 2>&1;
+        dnf install $1 -y &>>$LOG_FILE;
         if [ $? -ne 0 ]; then
             echo "$1 installation is failure"
             exit 1
