@@ -19,5 +19,5 @@ if [ $? -ne 0 ]; then
         echo "Installing Nginx is success"
     fi 
 else
-    $1 is already installed
+    echo "$1 is already installed"
 fi    
