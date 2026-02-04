@@ -18,7 +18,7 @@ fi
 Install(){
 
     if ! dnf list installed $1 &>>$LOG_FILE; then
-        echo "Installing $1..."
+        echo "$Y Installing $1... $N"
         dnf install $1 -y &>>$LOG_FILE;
         if [ $? -ne 0 ]; then
             echo "$R $1 installation is failure $N"
