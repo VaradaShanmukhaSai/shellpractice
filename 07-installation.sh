@@ -9,7 +9,7 @@ else
 echo "Executing as Root.."
 fi
 
-dnf list $1 installed
+dnf list installed $1
 if [ $? -ne 0 ]; then 
     dnf install nginx -y
     if [ $? -ne 0 ]; then 
