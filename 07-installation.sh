@@ -11,12 +11,12 @@ fi
 
 dnf list installed $1
 if [ $? -ne 0 ]; then 
-    dnf install nginx -y
+    dnf install $1 -y
     if [ $? -ne 0 ]; then 
-        echo "Installing Nginx is failure"
+        echo "Installing $1 is failure"
         exit 1
     else
-        echo "Installing Nginx is success"
+        echo "Installing $1 is success"
     fi 
 else
     echo "$1 is already installed"
