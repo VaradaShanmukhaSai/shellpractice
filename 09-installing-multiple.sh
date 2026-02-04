@@ -1,9 +1,9 @@
 #!/bin/bash
 
-R="\e[31m"
-G="\e[32m"
-Y="\e[33m"
-N="\e[0m"
+R=$'\e[31m'
+G=$'\e[32m'
+Y=$'\e[33m'
+N=$'\e[0m'
 LOG_FOLDER=/var/log/shell-script
 LOG_FILE=$LOG_FOLDER/$(date +%F)-$0.log
 
