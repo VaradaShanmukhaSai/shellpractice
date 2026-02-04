@@ -8,7 +8,8 @@ else
 fi
 
 Install(){
-    if [ $(dnf list installed $1) -ne 0 ]; then
+    status=$(dnf list installed $1)
+    if [ $? -ne 0 ]; then
         echo "Installing $1..."
         dnf install $1
         if [ $? -ne 0 ]; then
