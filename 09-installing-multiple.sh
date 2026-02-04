@@ -22,6 +22,11 @@ Install(){
         echo "$1 is already installed..."
     fi              
 }
-for i in $@; do
-    Install $i
-done
+
+if [ $# -ge 1 ];then
+    for i in $@; do
+        Install $i
+    done
+else
+    echo "Please give packages you want to install as arguments"
+fi        
