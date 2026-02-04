@@ -3,5 +3,5 @@
 one=Shanmukha
 two=sai
 
-sum="$one $two"
+sum="${one}$two"
 echo "$sum"
