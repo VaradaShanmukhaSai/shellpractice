@@ -1,6 +1,6 @@
 #!/bin/bash
 LOG_FOLDER=/var/log/shell-script
-LOG_FILE=$LOG_FOLDER/$(date +%F)- $0.log
+LOG_FILE=$LOG_FOLDER/$(date +%F)-$0.log
 
 
 if [ $(id -u) -ne 0 ]; then
