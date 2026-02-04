@@ -9,9 +9,9 @@ else
 echo "Executing as Root.."
 fi
 
-pr=$(dnf list $1 installed)
+dnf list $1 installed
 
-if [ -z $pr ]; then 
+if [ $? -ne 0 ]; then 
     dnf install nginx -y
     if [ $? -ne 0 ]; then 
         echo "Installing Nginx is failure"
