@@ -1,4 +1,9 @@
 #!/bin/bash
+
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
 LOG_FOLDER=/var/log/shell-script
 LOG_FILE=$LOG_FOLDER/$(date +%F)-$0.log
 
@@ -16,13 +21,13 @@ Install(){
         echo "Installing $1..."
         dnf install $1 -y &>>$LOG_FILE;
         if [ $? -ne 0 ]; then
-            echo "$1 installation is failure"
+            echo "$R $1 installation is failure $N"
             exit 1
         else
-            echo "$1 installation is success" 
+            echo "$G $1 installation is success $N" 
         fi
     else
-        echo "$1 is already installed..."
+        echo "$Y $1 is already installed... $N"
     fi              
 }
 
@@ -31,5 +36,5 @@ if [ $# -ge 1 ];then
         Install $i
     done
 else
-    echo "Please give packages you want to install as arguments"
+    echo "$R Please give packages you want to install as arguments $N "
 fi        
