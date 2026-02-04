@@ -7,4 +7,4 @@ echo "Please enter Password"
 read -s Password
 
 sudo useradd $USERNAME
-sudo groupadd wheel $USERNAME 
+sudo usermod wheel $USERNAME 
