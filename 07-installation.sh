@@ -9,15 +9,15 @@ else
 echo "Executing as Root.."
 fi
 
-pr=$(dnf module list $1 )
+pr=$(dnf module installed $1)
 
 if [ -z $pr ]; then 
     dnf install nginx -y
     if [ $? -ne 0 ]; then 
-    echo "Installing Nginx is failure"
-    exit 1
+        echo "Installing Nginx is failure"
+        exit 1
     else
-    echo "Installing Nginx is success"
+        echo "Installing Nginx is success"
     fi 
 else
     $1 is already installed
