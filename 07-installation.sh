@@ -9,7 +9,7 @@ else
 echo "Executing as Root.."
 fi
 
-pr=$(dnf module installed $1)
+pr=$(dnf list $1 installed)
 
 if [ -z $pr ]; then 
     dnf install nginx -y
