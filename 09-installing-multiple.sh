@@ -8,10 +8,10 @@ else
 fi
 
 Install(){
-    status=$(dnf list installed $1)
-    if [ $? -ne 0 ]; then
+
+    if ! dnf list installed $1>/dev/null; then
         echo "Installing $1..."
-        dnf install $1 -y
+        dnf install $1 -y>/dev/null
         if [ $? -ne 0 ]; then
             echo "$1 installation is failure"
             exit 1
