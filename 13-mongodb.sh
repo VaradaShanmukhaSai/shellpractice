@@ -16,22 +16,26 @@ VALIDATE(){
     fi        
 }
 
-cp mongodb.repo /etc/yum.repos.d/mongo.repo
+if [ ! dnf list installed mongodb-org &>>$LOG_FILE ]; then
 
-VALIDATE $? "Copying mongodb.repo"
+    cp mongodb.repo /etc/yum.repos.d/mongo.repo
 
-dnf install mongodb-org -y 
+    VALIDATE $? "Copying mongodb.repo"
 
-VALIDATE $? "Installing mongodb "
+    dnf install mongodb-org -y &>>$LOG_FILE
 
-systemctl enable mongod 
+    VALIDATE $? "Installing mongodb "
+
+    sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
+else
+    echo "Mongodb is already installed"
+
+fi    
+
+ systemctl enable mongod 
 systemctl start mongod 
 
 VALIDATE $? "Starting mongodb "
-
-sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
-
 systemctl restart mongod
-
 VALIDATE $? "Restarting mongodb "
 
