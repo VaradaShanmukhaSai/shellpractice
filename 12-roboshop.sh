@@ -13,6 +13,7 @@ for instance in $@; do
         --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=$instance}]' \
         --query 'Instances[0].InstanceId' \
         --output text )
+    echo "$INSTANCE_ID is created for instance $instance"    
 
     if [ $instance == "frontend" ]; then
           IP=$( aws ec2 describe-instances \
