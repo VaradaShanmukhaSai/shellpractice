@@ -1,6 +1,6 @@
 #!/bin/bash
 LOG_FOLDER="/var/log/shell-roboshop"
-LOG_FILE="$LOGFOLDER/$0.log"
+LOG_FILE="$LOG_FOLDER/$0.log"
 if [ $(id -u) -ne 0 ]; then
     echo "Please run as root user"
     exit 1
