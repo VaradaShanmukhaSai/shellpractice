@@ -20,7 +20,7 @@ cp mongodb.repo /etc/yum.repos.d/mongo.repo
 
 VALIDATE $? "Copying mongodb.repo"
 
-dnf install mongodb -y
+dnf install mongodb-org -y 
 
 VALIDATE $? "Installing mongodb "
 
