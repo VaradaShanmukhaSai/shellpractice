@@ -16,7 +16,7 @@ VALIDATE(){
     fi        
 }
 
-cp mongodb.repo /etc/yum.repos.d/
+cp mongodb.repo /etc/yum.repos.d/mongo.repo
 
 VALIDATE $? "Copying mongodb.repo"
 
