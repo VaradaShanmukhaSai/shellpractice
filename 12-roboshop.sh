@@ -23,7 +23,7 @@ for instance in $@; do
           RECORD_NAME=$DOMAIN_NAME
     else
         IP=$( aws ec2 describe-instances \
-        --instance-ids i-0a1b2c3d4e5f6g7h8 \
+        --instance-ids $INSTANCE_ID \
         --query 'Reservations[].Instances[].PrivateIpAddress' \
         --output text )
         RECORD_NAME=$instance.$DOMAIN_NAME
