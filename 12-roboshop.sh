@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 ami_id="ami-0220d79f3f480ecf5"
 sg_id="sg-0302f0f6b2b791c61"
 ZONE_ID="Z10085282I8SI65NGA9QJ"
@@ -14,7 +14,7 @@ for instance in $@; do
         --query 'Instances[0].InstanceId' \
         --output text )
 
-    if [ $instance=="frontend"]; then
+    if [ $instance == "frontend"]; then
           IP=$( aws ec2 describe-instances \
           --instance-ids $INSTANCE_ID \
           --query 'Reservations[].Instances[].PublicIpAddress' \
