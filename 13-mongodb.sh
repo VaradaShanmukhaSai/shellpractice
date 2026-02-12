@@ -7,7 +7,7 @@ if [ $(id -u) -ne 0 ]; then
 else
     echo "Running the script as Root user"
 fi
-
+mkdir -p $LOG_FOLDER
 VALIDATE(){
     if [ $1 -eq 0 ]; then 
         echo "$2 is success.." &>>$LOG_FILE
