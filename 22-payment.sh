@@ -24,12 +24,9 @@ VALIDATE(){
 }
 
 
-if ! dnf list installed python3 ;then
+
     dnf install python3 gcc python3-devel -y &>>$LOG_FILE
     VALIDATE $? "Installing Python.."
-else
-    echo "Already installed "&>>$LOG_FILE
-fi
 
 i=$( id -u roboshop &>>$LOG_FILE)
 
@@ -49,7 +46,7 @@ rm -rf /app/*
 unzip /tmp/payment.zip
 
 VALIDATE $? "Unzipping Payment "
-
+cd /app 
 pip3 install -r requirements.txt
 
 cp $SCRIPT_DIR/Payment.service /etc/systemd/system/payment.service
