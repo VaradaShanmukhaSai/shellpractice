@@ -53,11 +53,6 @@ if ! dnf list installed nodejs &>>$LOG_FILE ; then
     systemctl daemon-reload &>>$LOG_FILE
     VALIDATE $? "Reloading service "
 
-
-    systemctl enable catalogue &>>$LOG_FILE
-    systemctl start catalogue &>>$LOG_FILE
-    VALIDATE $? "Creating a Target to restart at boot and starting catalogue"
-
     cp mongodb.repo /etc/yum.repos.d/mongo.repo
 
     
@@ -66,6 +61,15 @@ if ! dnf list installed nodejs &>>$LOG_FILE ; then
 
     VALIDATE $? "Installing mongodb client "
 
-    mongosh --host $MONGO_HOST </app/db/master-data.js
+    mongosh --host $MONGO_HOST </app/db/master-data.js &>>$LOG_FILE
 
     VALIDATE $? "Running master-data"
+
+else
+    echo "$Y Catalogue nodejs is already installed..$N " &>>$LOG_FILE
+
+systemctl enable catalogue &>>$LOG_FILE
+systemctl start catalogue &>>$LOG_FILE
+VALIDATE $? "Creating a Target to restart at boot and starting catalogue"
+
+fi
