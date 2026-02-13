@@ -36,10 +36,10 @@ else
 
 fi    
 
- systemctl enable mongod 
-systemctl start mongod 
+systemctl enable mongod &>>$LOG_FILE
+systemctl start mongod &>>$LOG_FILE
 
-VALIDATE $? "Starting mongodb "
-systemctl restart mongod
-VALIDATE $? "Restarting mongodb "
+VALIDATE $? "Starting mongodb " &>>$LOG_FILE
+systemctl restart mongod &>>$LOG_FILE
+VALIDATE $? "Restarting mongodb " &>>$LOG_FILE
 
