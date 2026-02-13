@@ -14,13 +14,13 @@ fi
 mkdir -p $LOG_FOLDER
 VALIDATE(){
     if [ $1 -eq 0 ]; then 
-        echo "$2 is success.." &>>$LOG_FILE
+        echo "$G $2 is success.. $N" &>>$LOG_FILE
     else
-        echo "$2 is failure.." &>>$LOG_FILE
+        echo "$R $2 is failure.. $N" &>>$LOG_FILE
     fi        
 }
 
-if ! dnf list installed mongodb-org &>>/dev/null ; then
+if ! dnf list installed mongodb-org &>>/var/log ; then
 
     cp mongodb.repo /etc/yum.repos.d/mongo.repo
 
@@ -32,14 +32,14 @@ if ! dnf list installed mongodb-org &>>/dev/null ; then
 
     sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 else
-    echo "Mongodb is already installed"
+    echo "$Y Mongodb is already installed $N"
 
 fi    
 
 systemctl enable mongod &>>$LOG_FILE
 systemctl start mongod &>>$LOG_FILE
 
-VALIDATE $? "Starting mongodb " &>>$LOG_FILE
+VALIDATE $? "Starting mongodb " 
 systemctl restart mongod &>>$LOG_FILE
-VALIDATE $? "Restarting mongodb " &>>$LOG_FILE
+VALIDATE $? "Restarting mongodb " 
 
