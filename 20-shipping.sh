@@ -44,7 +44,7 @@ mkdir -p /app
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip 
 VALIDATE $? "Downloading Shipping..."
 cd /app 
-
+rm -rf /app/*
 unzip /tmp/shipping.zip
 VALIDATE $? "Unzipping Shipping.."
 
