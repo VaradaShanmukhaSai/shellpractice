@@ -46,6 +46,10 @@ if ! dnf list installed nginx &>>$LOG_FILE; then
 
     cp $SCRIPT_DIR/nginx.conf /etc/nginx/nginx.conf
 
+    systemctl restart nginx &>>$LOG_FILE
+
+    VALIDATE $? "Nginx is configured for first time"
+
 else
     echo "Nginx is already installed ..$Y Skipping $N"
 fi
