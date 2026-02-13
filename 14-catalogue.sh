@@ -1,4 +1,5 @@
 #!/bin/bash
+set -u
 LOG_FOLDER="/var/log/shell-roboshop"
 LOG_FILE="$LOG_FOLDER/$0.log"
 MONGO_HOST="mongodb.saidevops.online"
@@ -52,6 +53,7 @@ else
     echo "$Y Catalogue nodejs is already installed..$N " &>>$LOG_FILE
 
 fi
+
 cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service 
 
 VALIDATE $? "Creating Systemd service"
