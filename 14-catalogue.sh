@@ -40,7 +40,8 @@ if ! dnf list installed nodejs &>>$LOG_FILE ; then
     VALIDATE $? "Downloading Roboshop is "
 
     cd /app
-
+    rm -rf /app/*
+    VALIDATE $? "Removing existing /app contents"
 
     unzip /tmp/catalogue.zip &>>$LOG_FILE
     VALIDATE $? "Unzipping "
@@ -59,7 +60,7 @@ if ! id roboshop &>>/dev/null ;then
 else
     echo "Roboshop user is aleady there"
 fi
-        
+
 cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service 
 
 VALIDATE $? "Creating Systemd service"
