@@ -48,6 +48,8 @@ rm -rf /app/*
 unzip /tmp/shipping.zip
 VALIDATE $? "Unzipping Shipping.."
 
+mvn clean package &>>$LOG_FILE
+mv target/shipping-1.0.jar shipping.jar &>>$LOG_FILE
 
 cp $SCRIPT_DIR/shipping.service /etc/systemd/system/shipping.service
 
