@@ -1,6 +1,10 @@
 #!/bin/bash
 LOG_FOLDER="/var/log/shell-roboshop"
 LOG_FILE="$LOG_FOLDER/$0.log"
+R=$'\e[31m'
+G=$'\e[32m'
+Y=$'\e[33m'
+N=$'\e[0m'
 if [ $(id -u) -ne 0 ]; then
     echo "Please run as root user"
     exit 1

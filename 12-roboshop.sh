@@ -5,6 +5,14 @@ sg_id="sg-0302f0f6b2b791c61"
 ZONE_ID="Z10085282I8SI65NGA9QJ"
 DOMAIN_NAME="saidevops.online"
 
+
+if [ $# -eq 0 ]; then 
+    echo "Please pass the instance you want to craete as arguments"
+    exit 1
+else
+    echo "Creating instance"
+fi 
+        
 for instance in $@; do
     INSTANCE_ID=$( aws ec2 run-instances \
         --image-id $ami_id \
