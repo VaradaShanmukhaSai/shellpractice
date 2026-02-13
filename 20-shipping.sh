@@ -71,9 +71,9 @@ fi
 
 INDEX=$( mysql -h mysql.saidevops.online -uroot -pRoboShop@1 -e 'use cities')
 if [ $? -ne 0 ]; then 
-    mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/schema.sql
-    mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/app-user.sql 
-    mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/master-data.sql
+    mysql -h mysql.saidevops.online -uroot -pRoboShop@1 < /app/db/schema.sql
+    mysql -h mysql.saidevops.online -uroot -pRoboShop@1 < /app/db/app-user.sql 
+    mysql -h mysql.saidevops.online -uroot -pRoboShop@1 < /app/db/master-data.sql
 else
     ech "Products alraedy loaded.."
 fi
