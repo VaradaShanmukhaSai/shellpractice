@@ -2,6 +2,7 @@
 LOG_FOLDER="/var/log/shell-roboshop"
 LOG_FILE="$LOG_FOLDER/$0.log"
 MONGO_HOST="mongodb.saidevops.online"
+SCRIPT_DIR=$PWD
 R=$'\e[31m'
 G=$'\e[32m'
 Y=$'\e[33m'
@@ -46,14 +47,14 @@ if ! dnf list installed nodejs &>>$LOG_FILE ; then
     npm install 
     VALIDATE $? "Downloading dependencies.."
 
-    cp catalogue.service /etc/systemd/system/catalogue.service 
+    cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service 
 
     VALIDATE $? "Creating Systemd service"
 
     systemctl daemon-reload &>>$LOG_FILE
     VALIDATE $? "Reloading service "
 
-    cp mongodb.repo /etc/yum.repos.d/mongo.repo
+    cp $SCRIPT_DIR/mongodb.repo /etc/yum.repos.d/mongo.repo
 
     
 
