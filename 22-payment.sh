@@ -31,9 +31,9 @@ else
     echo "Already installed "&>>$LOG_FILE
 fi
 
-i=$( id -u roboshop)
+i=$( id -u roboshop &>>$LOG_FILE)
 
-if [ $i -eq 0 ]; then 
+if [ $? -eq 0 ]; then 
    echo "Roboshop user already exists.."
 else
     useradd --system --home /app --shell /sbin/nologin --comment "Roboshop user" roboshop
