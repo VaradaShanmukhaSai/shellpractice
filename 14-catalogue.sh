@@ -79,12 +79,21 @@ if ! dnf list installed mongodb-mongosh &>>$LOG_FILE; then
 
         VALIDATE $? "Installing mongodb client "
 
-        mongosh --host $MONGO_HOST </app/db/master-data.js &>>$LOG_FILE
 
-        VALIDATE $? "Running master-data"
 else
     echo "Mongodb-mongosh client is already installed.."
 fi
 
+INDEX=$(mongosh --host $MONGODB_HOST --quiet  --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
+
+if [ $INDEX -le 0 ]; then
+    mongosh --host $MONGODB_HOST </app/db/master-data.js
+    VALIDATE $? "Loading products"
+else
+    echo -e "Products already loaded ... $Y SKIPPING $N"
+fi
+
+systemctl restart catalogue
+VALIDATE $? "Restarting catalogue"
 
 
