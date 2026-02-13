@@ -33,7 +33,7 @@ if ! dnf list installed nodejs &>>$LOG_FILE ; then
 
     mkdir -p /app
     
-    useradd --system --home /app --shell /sbin/nologin --comment "Roboshop user" roboshop
+    
 
     curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip 
 
@@ -53,7 +53,13 @@ else
     echo "$Y Catalogue nodejs is already installed..$N " &>>$LOG_FILE
 
 fi
-
+if ! id roboshop &>>/dev/null ;then 
+    useradd --system --home /app --shell /sbin/nologin --comment "Roboshop user" roboshop
+    VALIDATE $? "Creating system user Roboshop"
+else
+    echo "Roboshop user is aleady there"
+fi
+        
 cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service 
 
 VALIDATE $? "Creating Systemd service"
