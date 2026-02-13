@@ -51,8 +51,6 @@ if ! dnf list installed nodejs &>>$LOG_FILE ; then
 
     cp $SCRIPT_DIR/mongodb.repo /etc/yum.repos.d/mongo.repo
 
-    
-
     dnf install mongodb-mongosh -y &>>$LOG_FILE
 
     VALIDATE $? "Installing mongodb client "
