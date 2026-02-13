@@ -30,6 +30,8 @@ if ! dnf list installed redis &>>$LOG_FILE; then
     VALIDATE $? "Installing redis "
 
     sed -i -e 's/127.0.0.1/0.0.0.0/g' -e '/protected-mode/ c protected-mode no' /etc/redis/redis.conf
+
+    systemctl restart redis -y &>>$LOG_FILE
 else
     echo "Redis is already installed"
 fi
