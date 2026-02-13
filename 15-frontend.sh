@@ -42,7 +42,7 @@ if ! dnf list installed nginx &>>$LOG_FILE; then
     VALIDATE $? "Downloading the frontend"
 
     cd /usr/share/nginx/html
-    unzip unzip /tmp/frontend.zip
+    unzip  /tmp/frontend.zip
 
     rm -rf /etc/nginx/nginx.conf
 
