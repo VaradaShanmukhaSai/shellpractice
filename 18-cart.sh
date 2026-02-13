@@ -55,7 +55,7 @@ else
 
 fi
 if ! id roboshop &>>/dev/null ;then 
-    cartadd --system --home /app --shell /sbin/nologin --comment "Roboshop cart" roboshop
+    useradd --system --home /app --shell /sbin/nologin --comment "Roboshop cart" roboshop
     VALIDATE $? "Creating system cart Roboshop"
 else
     echo "Roboshop cart is aleady there"
