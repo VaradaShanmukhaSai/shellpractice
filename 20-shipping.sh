@@ -70,7 +70,7 @@ else
 fi
 
 INDEX=$( mysql -h mysql.saidevops.online -uroot -pRoboShop@1 -e 'use cities')
-if [ $INDEX -ne 0 ]; then 
+if [ $? -ne 0 ]; then 
     mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/schema.sql
     mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/app-user.sql 
     mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/master-data.sql
