@@ -47,12 +47,7 @@ if ! dnf list installed nodejs &>>$LOG_FILE ; then
     npm install 
     VALIDATE $? "Downloading dependencies.."
 
-    cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service 
-
-    VALIDATE $? "Creating Systemd service"
-
-    systemctl daemon-reload &>>$LOG_FILE
-    VALIDATE $? "Reloading service "
+    
 
     cp $SCRIPT_DIR/mongodb.repo /etc/yum.repos.d/mongo.repo
 
@@ -69,8 +64,17 @@ if ! dnf list installed nodejs &>>$LOG_FILE ; then
 else
     echo "$Y Catalogue nodejs is already installed..$N " &>>$LOG_FILE
 
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service 
+
+VALIDATE $? "Creating Systemd service"
+
+systemctl daemon-reload &>>$LOG_FILE
+VALIDATE $? "Reloading service "
+
 systemctl enable catalogue &>>$LOG_FILE
 systemctl start catalogue &>>$LOG_FILE
 VALIDATE $? "Creating a Target to restart at boot and starting catalogue"
+
+
 
 fi
