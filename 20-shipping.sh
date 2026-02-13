@@ -69,7 +69,7 @@ else
     echo "MySQL already exists $Y Skipping $N"
 fi
 
-INDEX=$( mysql -h mysql.saidevops.online -uroot -pRoboShop@1 'use cities')
+INDEX=$( mysql -h mysql.saidevops.online -uroot -pRoboShop@1 -e 'use cities')
 if [ $INDEX -ne 0 ]; then 
     mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/schema.sql
     mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/db/app-user.sql 
