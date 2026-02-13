@@ -69,13 +69,13 @@ else
     echo "MySQL already exists $Y Skipping $N"
 fi
 
-INDEX=$( mysql -h mysql.saidevops.online -uroot -pRoboShop@1 -e 'use cities')
+mysql -h mysql.saidevops.online -uroot -pRoboShop@1 -e 'use cities'
 if [ $? -ne 0 ]; then 
     mysql -h mysql.saidevops.online -uroot -pRoboShop@1 < /app/db/schema.sql
     mysql -h mysql.saidevops.online -uroot -pRoboShop@1 < /app/db/app-user.sql 
     mysql -h mysql.saidevops.online -uroot -pRoboShop@1 < /app/db/master-data.sql
 else
-    ech "Products alraedy loaded.."
+    echo "Products alraedy loaded.."
 fi
 
 systemctl restart shipping
