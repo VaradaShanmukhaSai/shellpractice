@@ -48,20 +48,10 @@ if ! dnf list installed nodejs &>>$LOG_FILE ; then
     VALIDATE $? "Downloading dependencies.."
 
     
-
-    cp $SCRIPT_DIR/mongodb.repo /etc/yum.repos.d/mongo.repo
-
-    dnf install mongodb-mongosh -y &>>$LOG_FILE
-
-    VALIDATE $? "Installing mongodb client "
-
-    mongosh --host $MONGO_HOST </app/db/master-data.js &>>$LOG_FILE
-
-    VALIDATE $? "Running master-data"
-
 else
     echo "$Y Catalogue nodejs is already installed..$N " &>>$LOG_FILE
 
+fi
 cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service 
 
 VALIDATE $? "Creating Systemd service"
@@ -73,6 +63,19 @@ systemctl enable catalogue &>>$LOG_FILE
 systemctl start catalogue &>>$LOG_FILE
 VALIDATE $? "Creating a Target to restart at boot and starting catalogue"
 
+if ! dnf list installed mongodb-mongosh &>>$LOG_FILE; then
+    cp $SCRIPT_DIR/mongodb.repo /etc/yum.repos.d/mongo.repo
 
+        dnf install mongodb-mongosh -y &>>$LOG_FILE
 
+        VALIDATE $? "Installing mongodb client "
+
+        mongosh --host $MONGO_HOST </app/db/master-data.js &>>$LOG_FILE
+
+        VALIDATE $? "Running master-data"
+else
+    echo "Mongodb-mongosh client is already installed.."
 fi
+
+
+
