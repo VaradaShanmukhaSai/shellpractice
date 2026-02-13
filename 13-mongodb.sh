@@ -20,7 +20,7 @@ VALIDATE(){
     fi        
 }
 
-if [ ! dnf list installed mongodb-org &>>$LOG_FILE ]; then
+if ! dnf list installed mongodb-org &>>/dev/null ; then
 
     cp mongodb.repo /etc/yum.repos.d/mongo.repo
 
