@@ -2,7 +2,7 @@
 
 source ./24-TestRunScript.sh
 
-country=India
+#country=India
 
 echo "I am in $country"
 
