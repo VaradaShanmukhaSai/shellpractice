@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sh 24-TestRunScript.sh
+source 24-TestRunScript.sh
 
 country=India
 
