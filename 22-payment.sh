@@ -28,9 +28,9 @@ VALIDATE(){
     dnf install python3 gcc python3-devel -y &>>$LOG_FILE
     VALIDATE $? "Installing Python.."
 
-i=$( id -u roboshop &>>$LOG_FILE)
 
-if [ $? -eq 0 ]; then 
+
+if id roboshop &>>/dev/null; then
    echo "Roboshop user already exists.."
 else
     useradd --system --home /app --shell /sbin/nologin --comment "Roboshop user" roboshop

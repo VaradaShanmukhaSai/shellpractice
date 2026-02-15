@@ -31,9 +31,9 @@ else
    echo "Maven is already installed..$Y Skipping $N"
 fi
 
-i=$( id roboshop )
+i=$( id -u roboshop )
 
-if [ $i -eq 0 ]; then
+if [ $? -eq 0 ]; then
     echo "Roboshop user already exists"
 else
     useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
