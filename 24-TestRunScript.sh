@@ -1,6 +1,6 @@
 #!/bin/bash
 
-country="Singapore"
+#country="Singapore"
 
 echo "I am in $country"
 
