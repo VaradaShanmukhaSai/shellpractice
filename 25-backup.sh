@@ -20,9 +20,10 @@ check_user(){
 
 check_user
 
-if [ !($# -eq 2 || $# -eq 3) ]; then 
+if [[ ! ($# -eq 2 || $# -eq 3) ]]; then 
     USAGE
-fi    
+fi
+   
 
 if [[ -d $SOURCE_DIR ]]; then
     echo "$SOURCE_DIR exists"
