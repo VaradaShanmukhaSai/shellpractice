@@ -60,6 +60,6 @@ find $SOURCE_DIR -type f -name "*.log" -mtime +$DAYS -print0 | while IFS= read -
 if [[ -f "$BACKUP_FILE" ]]; then 
     echo "Archived and deleted old files"
 else
-    echo "$BACKUP_FILE is not created:
+    echo "$BACKUP_FILE is not created"
 fi
 
