@@ -9,7 +9,7 @@ if [[ ! -z $DISK_FREE ]]; then
         USAGE=$(echo $line | awk '{print $6}' | cut -d '%' -f1 )
         if [[ $USAGE -ge 3 ]]; then 
             PARTITION=$(echo $line | awk '{print $7}')
-            MESSAGE+="High Disk Usage in $PARTITION : $USAGE%"
+            MESSAGE+="High Disk Usage in $PARTITION : $USAGE% <br>"
         fi
     done <<<$DISK_FREE
 else
