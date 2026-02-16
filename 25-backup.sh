@@ -18,6 +18,12 @@ check_user(){
     fi    
 }
 
+check_user
+
+if [ ! $# -eq 2 || $# -eq 3 ]; then 
+    USAGE
+fi    
+
 if [[ -d $SOURCE_DIR ]]; then
     echo "$SOURCE_DIR exists"
     files=$(find -type f -name "*.log" -mtime +$DAYS)
@@ -55,4 +61,3 @@ find $SOURCE_DIR -type f -name "*.log" -mtime +$DAYS -print0 | while IFS= read -
     echo "
     rm -rf $file 
     done
-    
