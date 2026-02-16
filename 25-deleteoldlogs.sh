@@ -11,7 +11,7 @@ LOG_FILE=$LOG_FOLDER/$(basename $0).log
 if [[ -d $LOG_FOLDER ]]; then 
     echo "$LOG_FOLDER exists"
     FILES=$(find $LOG_FOLDER -type f -mtime +14)
-    if [[ -z $FILES ]]; then 
+    if [[ ! -z $FILES ]]; then 
         echo "Files exist in $LOG_FOLDER older than 14 days"
         while IFS=read -r file; do
             echo "Removing $file" &>>$LOG_FILE
