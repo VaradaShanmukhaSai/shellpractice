@@ -13,7 +13,7 @@ if [[ -d $LOG_FOLDER ]]; then
     FILES=$(find $LOG_FOLDER -type f -mtime +14)
     if [[ ! -z $FILES ]]; then 
         echo "Files exist in $LOG_FOLDER older than 14 days"
-        while IFS=read -r file; do
+        while IFS= read -r file; do
             echo "Removing $file" &>>$LOG_FILE
             rm -rf $file
         done <<<{$FILES}
