@@ -5,13 +5,13 @@ IP=$(hostname -i)
 MESSAGE=''
 
 echo "Executing command df "
-df -hT | awk 'NR>1{print $6,$7}' | while IFS= read -r usage part; do
+ while IFS= read -r usage part; do
     USAGE=$(echo "$usage" | cut -d '%' -f1)
     if [[ $USAGE -ge 3 ]]; then
         PARTITION=$part
         MESSAGE+="High Disk Usage in $PARTITION : $USAGE% <br>"
     fi
-done
+done < <(df -hT | awk 'NR>1{print $6,$7}') 
 
 
 
