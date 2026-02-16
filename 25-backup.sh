@@ -27,12 +27,12 @@ fi
 
 if [[ -d $SOURCE_DIR ]]; then
     echo "$SOURCE_DIR exists"
-    files=$(find -type f -name "*.log" -mtime +$DAYS)
+    files=$(find $SOURCE_DIR -type f -name "*.log" -mtime +$DAYS)
     if [[ -z $files ]]; then 
         echo "No files in the $SOURCE_DIR older thean $DAYS"
         exit 1
     else
-        echo "Found out $files older than $DAYS"
+        echo -e  "Found out $files \n older than $DAYS"
     fi
 else
     echo "$SOURCE_DIR does not exist"
