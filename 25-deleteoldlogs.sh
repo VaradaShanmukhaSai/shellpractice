@@ -18,7 +18,7 @@ if [[ -d $LOG_FOLDER ]]; then
         while IFS= read -r file; do
             echo "$(date "+%Y-%m-%d %H:%M:%S") |Removing $file" | tee -a $LOG_FILE
             rm -rf $file
-        done <<<$FILES
+        done <<<{$FILES}
      else
         echo "$(date "+%Y-%m-%d %H:%M:%S") |There are no files in $LOG_FOLDER older than 14 days" | tee -a $LOG_FILE
      fi
