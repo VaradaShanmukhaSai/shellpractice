@@ -53,7 +53,7 @@ BACKUP_FILE="$DEST_DIR/file-$(date "+%F-%H:%M").tar.gz"
 
 find $SOURCE_DIR -type f -name "*.log" -mtime +$DAYS -print0 | while IFS= read -r -d '' file; do
     echo "Deleting $file"
-    tar czf $BACKUP_FILE $file
+    tar -czf $BACKUP_FILE $file
     rm -rf $file 
     done
 
