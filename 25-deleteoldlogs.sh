@@ -14,9 +14,9 @@ if [[ -d $LOG_FOLDER ]]; then
     if [[ ! -z $FILES ]]; then 
         echo "Files exist in $LOG_FOLDER older than 14 days"
         while IFS= read -r file; do
-            echo "Removing $file" &>>$LOG_FILE
+            echo "Removing $file" | tee -a $LOG_FILE
             rm -rf $file
-        done <<<{$FILES}
+        done <<<$FILES
      else
         echo "There are no files in $LOG_FOLDER older than 14 days"
      fi
