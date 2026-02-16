@@ -7,7 +7,14 @@ ALERT_TYPE=$4
 SERVER=$5
 TO_ADDRESS=$1
 
-FINAL_MESSAGE=$(sed -e 's/TEAM/$TEAM/g' -e 's/SUBJECT/$SUBJECT/g' -e 's/MESSAGE/$MESSAGE_BODY/g' -e 's/SERVER/$SERVER/g' template.html)
+
+FINAL_MESSAGE=$(sed \
+  -e "s|TEAM|$TEAM|g" \
+  -e "s|SUBJECT|$SUBJECT|g" \
+  -e "s|MESSAGE|$MESSAGE_BODY|g" \
+  -e "s|SERVER|$SERVER|g" \
+  template.html)
+
 
 {
 echo "To: $TO_ADDRESS"
