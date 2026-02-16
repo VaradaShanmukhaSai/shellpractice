@@ -47,9 +47,9 @@ else
     exit 1
 fi    
 
-BACKUP_FILE="$DEST_DIR/file-$(date +%F %T).tar.gz"
+BACKUP_FILE="$DEST_DIR/file-$(date +%F %H:%M).tar.gz"
 
-if [[ -f "$BACKUP_FILE "]]; then 
+if [[ -f "$BACKUP_FILE" ]]; then 
     echo "Backup file created"
 else
     echo "Backup file is not created"
