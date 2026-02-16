@@ -6,7 +6,7 @@ Y=$'\e[33m'
 N=$'\e[0m'
 
 LOG_FOLDER="/home/ec2-user/old-logs"
-LOG_FILE=$LOG_FOLDER/$(basename $0).log
+LOG_FILE=$LOG_FOLDER/$(basename "$0").log
 
 if [[ -d $LOG_FOLDER ]]; then 
     echo "$LOG_FOLDER exists"
