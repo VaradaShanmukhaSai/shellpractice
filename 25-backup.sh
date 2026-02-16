@@ -49,12 +49,7 @@ fi
 
 BACKUP_FILE="$DEST_DIR/file-$(date "+%F-%H:%M").tar.gz"
 
-if [[ -f "$BACKUP_FILE" ]]; then 
-    echo "Backup file created"
-else
-    echo "Backup file is not created"
-    exit 1
-fi        
+      
 
 find $SOURCE_DIR -type f -name "*.log" -mtime +$DAYS -print0 | while IFS= read -r -d '' file; do
     echo "Deleting $file"
@@ -62,3 +57,10 @@ find $SOURCE_DIR -type f -name "*.log" -mtime +$DAYS -print0 | while IFS= read -
     echo "
     rm -rf $file 
     done
+
+if [[ -f "$BACKUP_FILE" ]]; then 
+    echo "Archived and deleted old files"
+else
+    echo "$BACKUP_FILE is not created:
+fi
+        
