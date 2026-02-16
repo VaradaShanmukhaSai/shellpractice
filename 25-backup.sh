@@ -27,7 +27,7 @@ fi
 
 if [[ -d $SOURCE_DIR ]]; then
     echo "$SOURCE_DIR exists"
-    files=$(find $SOURCE_DIR -type f -name "*.log" -mtime +$DAYS)
+    files=$(find $SOURCE_DIR -mtime +$DAYS)
     if [[ -z $files ]]; then 
         echo "No files in the $SOURCE_DIR older thean $DAYS"
         exit 1
@@ -51,7 +51,7 @@ BACKUP_FILE="$DEST_DIR/file-$(date "+%F-%H:%M").tar.gz"
 
       
 
-find $SOURCE_DIR -type f -name "*.log" -mtime +$DAYS -print0 | while IFS= read -r -d '' file; do
+find $SOURCE_DIR  -mtime +$DAYS -print0 | while IFS= read -r -d '' file; do
     echo "Deleting $file"
     tar -czf $BACKUP_FILE $file
     rm -rf $file 
