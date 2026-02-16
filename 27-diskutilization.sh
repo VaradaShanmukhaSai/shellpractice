@@ -1,17 +1,17 @@
 #!/bin/bash
 
-DISK_FREE=$(df -hT | awk 'NR>1 {print}')
+
 IP=$(hostname -i)
 MESSAGE=''
 if [[ ! -z $DISK_FREE ]]; then 
     echo "Executing command df "
-    while IFS= read -r line ; do
-        USAGE=$(echo $line | awk '{print $6}' | cut -d '%' -f1 )
+   df -hT | awk 'NR>1{print $6,$7}' |while IFS= read -r usage part ; do
+        USAGE=$(echo "$usage" |cut -d '%' -f1 )
         if [[ $USAGE -ge 3 ]]; then 
-            PARTITION=$(echo $line | awk '{print $7}')
+            PARTITION=$part
             MESSAGE+="High Disk Usage in $PARTITION : $USAGE% <br>"
         fi
-    done <<<$DISK_FREE
+    done 
 else
     echo "No mounts on the disk "
 fi 
