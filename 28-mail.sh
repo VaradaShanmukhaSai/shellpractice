@@ -9,10 +9,10 @@ TO_ADDRESS=$1
 
 
 FINAL_MESSAGE=$(sed \
-  -e "|s|TEAM|$TEAM|g" \
-  -e "|s|SUBJECT|$SUBJECT|g" \
-  -e "|s|MESSAGE|$MESSAGE_BODY|g" \
-  -e "|s|SERVER|$SERVER|g" \
+  -e "s|TEAM|$TEAM|g" \
+  -e "s|SUBJECT|$SUBJECT|g" \
+  -e "s|MESSAGE|$MESSAGE_BODY|g" \
+  -e "s|SERVER|$SERVER|g" \
   template.html)
 
 
